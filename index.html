@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       * {
+            margin: 0;
+            padding: 0;
+        }
+        /* 取消默认8px的影响 */
+
+        html,body {
+            background-color: bisque;
+            width: 100%;
+            height: 100%;
+            /* 充满全屏 方便后续操作 */
+            /* 基础操作 */
+            display: flex;
+            /* 设置弹性盒子 方便操作子元素 */
+            flex-direction: row;
+            /* 元素按行排列 */
+            justify-content: center;
+            /* x轴方向剧中 */
+            align-items: center;
+            /* 垂直方向居中 */
+        }
+
+        .heart {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            /* 基本操作 */
+            position: absolute;
+            /* 设置定位  这里要是有设置position就可以给子元素定位 */
+            /* 父元素设定了弹性盒子 居中了所有子元素 */
+            /* 他是不会影响上一个父元素的 除非你用位置属性修改他 */
+            transform: rotate(45deg);
+            /* 改变:旋转45度数 */
+            animation: heartbit 1s linear infinite alternate ;
+            /* 设置动画 名称 时间 速度 (延迟) 次数 播放顺序 后面这个播放是奇数正常 偶数倒放  */
+            box-shadow: 0 0 10px red;
+            /* 设置阴影: 左右偏差 上下偏差 阴影面积 颜色 */
+        }
+        .heart::before{
+            content: "";
+            /* 设置伪元素必要条件 */
+            width: 200px;
+            height: 101px;
+            background-color: red;
+            /* 基本操作 */
+            position: absolute;
+            top: -100px;
+            /* 这里伪元素可以作为真元素子元素 进行定位 通过top修改位置 不然他们是叠在一起的 */
+            border-radius: 100px 100px 0 0;
+            /* 修改为半圆 */
+            box-shadow: 0 0 10px red;
+            /* 设置阴影: 左右偏差 上下偏差 阴影面积 颜色 */
+        }
+        .heart::after{
+            content: "";
+            width: 101px;
+            height: 200px;
+            background-color: red;
+            position: absolute;
+            left: -100px;
+            border-radius: 100px  0 0 100px;
+            /* 和上述操作一样 */
+            box-shadow: 0 0 10px red;
+            /* 设置阴影: 左右偏差 上下偏差 阴影面积 颜色 */
+        }
+        /* 设置动画咯 */
+        @keyframes heartbit {
+            /* 关键词 名字 */
+            0% {
+                transform: scale(0.5) rotate(45deg);
+                /* 改变:缩放 旋转 */
+            }
+            100% {
+                transform: scale(1) rotate(45deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="heart"></div>
+</body>
+
+</html>
